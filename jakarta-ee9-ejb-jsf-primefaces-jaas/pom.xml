@@ -123,10 +123,10 @@
                 <version>5.0.1.Final</version>
                 <!-- If it is deployed locally we can omit this config -->
                 <configuration>
-                    <hostname>kevin.cx</hostname>
+                    <hostname>localhost</hostname>
                     <port>9990</port>
-                    <username>kevin</username>
-                    <password>valsunga.124</password>
+                    <username>admin</username>
+                    <password>admin</password>
                 </configuration>
             </plugin>
         </plugins>

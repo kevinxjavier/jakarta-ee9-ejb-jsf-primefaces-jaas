@@ -9,11 +9,11 @@
         <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
     </h:head>
     <h:body>
-        <h:outputLabel value="All Roles" />
+        <h:outputLabel value="All Roles" rendered="#{p:ifAllGranted('ADMIN,USER')}" />
 
-        <h:outputText value="Welcome: " />
+        <h:outputText value="Welcome: #{p:userPrincipal()}" rendered="#{not empty p:userPrincipal()}" />
 
-        <h:form>
+        <h:form rendered="#{p:ifGranted('ADMIN')}">
             <div class="p-field p-grid">
                 <p:outputLabel value="Name" for="name" class="p-col-fiexed" style="width: 200px;" />
                 <div class="p-col">
