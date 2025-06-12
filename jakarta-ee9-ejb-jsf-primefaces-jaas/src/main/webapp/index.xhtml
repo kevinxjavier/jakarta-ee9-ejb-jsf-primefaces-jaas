@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8" />
+        <title>Index</title>
+        <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
+    </h:head>
+    <h:body>
+        <h:outputLabel value="All Roles" />
+
+        <h:outputText value="Welcome: " />
+
+        <h:form>
+            <div class="p-field p-grid">
+                <p:outputLabel value="Name" for="name" class="p-col-fiexed" style="width: 200px;" />
+                <div class="p-col">
+                    <p:inputText id="name" value="#{userController.userDTO.name}" required="true" label="Name" />
+                </div>
+                <div class="p-col">
+                    <p:message for="name" style="color: red;" />
+                </div>
+            </div>
+
+            <div class="p-field p-grid">
+                <p:outputLabel value="Address" for="address" class="p-col-fiexed" style="width: 200px;" />
+                <div class="p-col">
+                    <p:inputText id="address" value="#{userController.userDTO.address}" label="Address" />
+                </div>
+                <div class="p-col">
+                    <p:message for="address" style="color: red;" />
+                </div>
+            </div>
+
+            <div>
+                <p:commandButton value="Save" action="#{userController.saveUser}" update="@form my_table1" styleClass="ui-button-secondary" />
+            </div>
+        </h:form>
+
+        <p:dataTable value="#{userController.listUsers}" var="user" rendered="#{not empty userController.listUsers}"
+                     style="max-width: 65%;"
+                     id="my_table1"
+                     rows="5"
+                     paginator="true" paginatorPosition="both"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+            <p:column headerText="Id">
+                <h:outputText value="#{user.id}" />
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{user.name}" />
+            </p:column>
+
+            <p:column headerText="Address">
+                <h:outputText value="#{user.address}" />
+            </p:column>
+        </p:dataTable>
+
+    </h:body>
+</html>
