@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/layouts/template_access.xhtml">
+
+    <ui:define name="content">
+        <p:panel header="Login Error">
+            <p:staticMessage severity="error" summary="ERROR" detail="Username or Password incorrect" />
+
+            <p:linkButton outcome="/app/index" value="login" styleClass="p-my-2" />
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
