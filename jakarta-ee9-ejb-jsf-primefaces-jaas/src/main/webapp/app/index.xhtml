@@ -9,7 +9,21 @@
         <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css" />
     </h:head>
     <h:body>
-        <h:outputLabel value="All Roles" rendered="#{p:ifAllGranted('ADMIN,USER')}" />
+
+        <h1>Welcome to JakartaEE10</h1>
+
+        <p:linkButton outcome="/login" value="login" styleClass="p-my-2" rendered="#{empty p:userPrincipal()}" />
+        <h:form rendered="#{not empty p:userPrincipal()}">
+            <p:commandButton action="#{logoutController.logout}" value="logout" styleClass="ui-button-primary" />
+        </h:form>
+        <br/>
+
+        <p:divider />
+
+        <h:outputLabel value="- All Roles" rendered="#{p:ifAllGranted('ADMIN,USER')}" /><br/>
+        <h:outputLabel value="- User Role" rendered="#{p:ifAllGranted('USER')}" />
+
+        <p:divider />
 
         <h:outputText value="Welcome: #{p:userPrincipal()}" rendered="#{not empty p:userPrincipal()}" />
 
@@ -39,7 +53,7 @@
             </div>
         </h:form>
 
-        <p:dataTable value="#{userController.listUsers}" var="user" rendered="#{not empty userController.listUsers}"
+        <p:dataTable value="#{userController.listUsers}" var="user" rendered="#{not empty userController.listUsers and not empty p:userPrincipal()}"
                      style="max-width: 65%;"
                      id="my_table1"
                      rows="5"
